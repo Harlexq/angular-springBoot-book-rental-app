@@ -1,0 +1,127 @@
+.header {
+  background-color: #fff;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
+
+  .mobile-menu {
+    display: none;
+    position: relative;
+    .head-btn {
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+    }
+    .menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      z-index: 999;
+      .close {
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+      }
+      .mobile-nav {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .nav-item {
+          display: block;
+          font-size: 30px;
+          padding: 5px 0;
+          font-weight: 600;
+          width: 100%;
+          margin-left: 80px;
+
+          &.active {
+            color: #62ab00;
+          }
+          &:hover {
+            color: #62ab00;
+          }
+        }
+      }
+    }
+  }
+
+  .head-brand {
+    h1 {
+      font-size: 25px;
+      font-weight: 600;
+    }
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav {
+    .nav-item {
+      font-weight: 600;
+      padding: 30px 15px;
+      transition: 0.3s;
+      &.active {
+        color: #62ab00;
+      }
+      &:hover {
+        color: #62ab00;
+      }
+    }
+  }
+
+  .profile {
+    position: relative;
+    cursor: pointer;
+    p {
+      padding: 10px;
+    }
+    &:hover .user-dropdown-content {
+      display: block;
+    }
+    .user-dropdown-content {
+      position: absolute;
+      top: 35px;
+      left: 0;
+      display: none;
+      width: 250px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      .dropdown-item {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px;
+        transition: 0.3s;
+        &:hover {
+          color: #62ab00;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .mobile-menu {
+    display: block !important;
+  }
+
+  .nav {
+    display: none !important;
+  }
+}

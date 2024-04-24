@@ -1,0 +1,50 @@
+<div class="profile">
+  <form [formGroup]="form" class="form" (ngSubmit)="updateUser()">
+    <app-input-control
+      [form]="form"
+      [fb]="newFirstName"
+      placeholder="Adınızı Giriniz"
+    />
+    <ng-container *ngIf="newFirstName.invalid && newFirstName.dirty">
+      <p *ngIf="newFirstName.errors?.['required']">İsim Alanı Zorunludur</p>
+    </ng-container>
+    <app-input-control
+      [form]="form"
+      [fb]="newLastName"
+      placeholder="Soydınızı Giriniz"
+    />
+    <ng-container *ngIf="newLastName.invalid && newLastName.dirty">
+      <p *ngIf="newLastName.errors?.['required']">Soyisim Alanı Zorunludur</p>
+    </ng-container>
+    <app-input-control
+      [form]="form"
+      [fb]="newEmail"
+      type="email"
+      placeholder="E-Mail Adresinizi Giriniz"
+    />
+    <ng-container *ngIf="newEmail.invalid && newEmail.dirty">
+      <p *ngIf="newEmail.errors?.['required']">E-Mail Adresi Zorunludur</p>
+      <p *ngIf="newEmail.errors?.['email']">
+        E-Mail Adresi Doğru Format'da Olmalıdır
+      </p>
+    </ng-container>
+    <app-button-control content="Profili Güncelle" />
+  </form>
+  <div class="profile-info">
+    <p>
+      Adınız: <strong> {{ currentUser.firstName }}</strong>
+    </p>
+    <p>
+      Soyadınız: <strong> {{ currentUser.lastName }}</strong>
+    </p>
+    <p>
+      E-Mail Adresiniz: <strong> {{ currentUser.email }}</strong>
+    </p>
+    <p>
+      Hesap Oluşturma Tarihi:
+      <strong> {{ currentUser.accountDate }}</strong>
+    </p>
+  </div>
+</div>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

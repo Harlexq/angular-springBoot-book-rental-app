@@ -1,0 +1,11 @@
+<div class="sidenav">
+  <h2>Kitap Filtreleme</h2>
+  <h3 class="side-title">Kategoriler</h3>
+  <p-multiSelect
+    [options]="categories"
+    [(ngModel)]="selectedCategories"
+    optionLabel="title"
+    class="select"
+  />
+  <app-button-control (click)="filterBooksByCategory()" content="Filtrele" />
+</div>

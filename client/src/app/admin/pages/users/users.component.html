@@ -1,0 +1,68 @@
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  position="right"
+  styleClass="w-30"
+  appSidebar
+>
+  <app-users-feature [selectedUserId]="selectedUserId" />
+</p-sidebar>
+
+<p-table [value]="pagedUsers">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Kullanıcı ID</th>
+      <th>Kullanıcı İsmi</th>
+      <th>Kullanıcı Soyismi</th>
+      <th>Kullanıcı Hesap Oluşturma Tarihi</th>
+      <th>Kullanıcı E-Mail Adresi</th>
+      <th>Kiraladığı Kitaplar</th>
+      <th>Kullanıcı İşlemler</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.accountDate | date : "MMMM, dd, y" : null : "tr" }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <ul class="user-books">
+          <ng-container *ngIf="user.rentalBooks.length > 0; else noBooks">
+            <li *ngFor="let userBook of user.rentalBooks">
+              Kitap Adı: <strong>{{ getBooksName(userBook.bookId) }}</strong>
+            </li>
+          </ng-container>
+          <ng-template #noBooks>
+            <li>Kitap Bulunamadı</li>
+          </ng-template>
+        </ul>
+      </td>
+      <td>
+        <div class="edit">
+          <app-button-control
+            color="warning"
+            (click)="toggleSidebar(user.id)"
+            content="Düzenle"
+          />
+          <p-button
+            (click)="deleteUser(user.id)"
+            icon="pi pi-times"
+            label="Sil"
+            styleClass="btn btn-danger"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-paginator
+  [rows]="rows"
+  [totalRecords]="users.length"
+  [rowsPerPageOptions]="rowSize"
+  (onPageChange)="onPageChange($event)"
+/>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div *ngIf="pagedUsers.length === 0" class="empty">Kullanıcılar Bulunamadı</div>

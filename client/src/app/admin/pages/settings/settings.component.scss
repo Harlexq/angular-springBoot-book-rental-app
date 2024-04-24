@@ -1,0 +1,74 @@
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 30px;
+  h2 {
+    margin-bottom: 15px;
+  }
+  .left {
+    flex: 0 1 calc(50% - 30px);
+    width: 50%;
+    .banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .banner-container {
+        position: relative;
+        &:hover .banner-btn {
+          display: flex;
+        }
+        img {
+          border-radius: 8px;
+          border: 1px solid #000;
+          width: 70px;
+          height: 70px;
+        }
+        .banner-btn {
+          background-color: #ed4040;
+          transition: 0.3s;
+          color: #fff;
+          font-size: 14px;
+          cursor: pointer;
+          border: none;
+          border-radius: 3px;
+          padding: 5px;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          display: none;
+          &:hover {
+            background-color: #f52828;
+          }
+        }
+      }
+      .banner-create {
+        border-radius: 8px;
+        width: 70px;
+        height: 70px;
+        background-color: #a7a8a6;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        &:hover {
+          background-color: #939493;
+        }
+      }
+    }
+  }
+  .right {
+    flex: 0 1 calc(50% - 30px);
+    width: 50%;
+    app-button-control {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

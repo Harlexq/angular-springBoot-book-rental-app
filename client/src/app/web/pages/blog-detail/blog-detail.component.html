@@ -1,0 +1,17 @@
+<div *ngIf="blog">
+  <div class="blog-content">
+    <div class="blog-img">
+      <img [src]="blog.image" [alt]="blog.title" />
+    </div>
+    <div class="blog-feature">
+      <h2 class="title">{{ blog.title }}</h2>
+      <p class="desc" [innerHTML]="blog.description"></p>
+      <div class="feauture">
+        <p>
+          <strong>Yayın Tarihi: </strong
+          >{{ blog.publishDate | date : "MMMM, dd, y" : null : "tr" }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

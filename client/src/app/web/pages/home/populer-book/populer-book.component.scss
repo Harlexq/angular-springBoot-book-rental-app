@@ -1,0 +1,28 @@
+.books {
+  .title {
+    height: 40px;
+    background-color: #62ab00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .content {
+    text-align: center;
+    background-color: #f1f1f1;
+    padding: 15px;
+    display: block;
+    h2 {
+      font-size: 20px;
+      color: #333;
+      text-align: center;
+      padding-bottom: 15px;
+    }
+    img {
+      border-radius: 15px;
+      border: 2px solid #62ab00;
+      width: 300px;
+    }
+  }
+}

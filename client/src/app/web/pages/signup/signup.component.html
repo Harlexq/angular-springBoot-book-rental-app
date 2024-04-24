@@ -1,0 +1,72 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="signup()" class="form">
+    <div class="title">
+      <h1>Kitapçı Dayı'ya Kayıt Ol</h1>
+    </div>
+    <app-input-control
+      [fb]="newFirstName"
+      [form]="form"
+      placeholder="İsminizi Giriniz"
+    />
+    <ng-container *ngIf="newFirstName.invalid && newFirstName.dirty">
+      <p *ngIf="newFirstName.errors?.['required']">İsim Alanı Zorunludur</p>
+    </ng-container>
+    <app-input-control
+      [fb]="newLastName"
+      [form]="form"
+      placeholder="Soyisminizi Giriniz"
+    />
+    <ng-container *ngIf="newLastName.invalid && newLastName.dirty">
+      <p *ngIf="newLastName.errors?.['required']">Soyisim Alanı Zorunludur</p>
+    </ng-container>
+    <app-input-control
+      [fb]="newEmail"
+      [form]="form"
+      placeholder="E-Mail Adresinizi Giriniz"
+    />
+    <ng-container *ngIf="newEmail.invalid && newEmail.dirty">
+      <p *ngIf="newEmail.errors?.['required']">E-Mail Adresi Zorunludur</p>
+      <p *ngIf="newEmail.errors?.['email']">
+        E-Mail Adresi Doğru Format'da Olmalıdır
+      </p>
+    </ng-container>
+    <div class="password">
+      <app-input-control
+        [fb]="newPassword"
+        [type]="passType"
+        [form]="form"
+        placeholder="Şifrenizi Giriniz"
+      />
+      <ng-container *ngIf="newPassword.invalid && newPassword.dirty">
+        <p *ngIf="newPassword.errors?.['required']">Şifre Alanı Zorunludur</p>
+        <p *ngIf="newPassword.errors?.['minlength']">
+          Şifreniz Minumum 6 Karakter Olmalıdır
+        </p>
+        <p *ngIf="newPassword.errors?.['maxlength']">
+          Şifreniz Maximum 12 Karakter Olmalıdır
+        </p>
+      </ng-container>
+      <button type="button" (click)="passwordShow()" class="password-btn">
+        <ng-container *ngIf="passType == 'password'; else textInput">
+          <i class="fa-regular fa-eye"></i>
+        </ng-container>
+        <ng-template #textInput>
+          <i #textInput class="fa-regular fa-eye-slash"></i
+        ></ng-template>
+      </button>
+    </div>
+    <app-input-control
+      [fb]="newRePassword"
+      [type]="passType"
+      [form]="form"
+      placeholder="Şifrenizi Tekrardan Giriniz"
+    />
+    <ng-container *ngIf="newRePassword.touched">
+      <p *ngIf="newPassword.value !== newRePassword.value">
+        Şifreler Birbirine Eşit Olmalıdır
+      </p>
+    </ng-container>
+    <app-button-control [disabled]="!form.valid" content="Kayıt Ol" />
+    <a class="to-link" routerLink="/login">Zaten Bir Hesabın Varmı?</a>
+  </form>
+</div>

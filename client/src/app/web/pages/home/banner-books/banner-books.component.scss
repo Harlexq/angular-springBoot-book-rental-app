@@ -1,0 +1,75 @@
+.books {
+  width: 100%;
+  margin: 35px 0;
+  .books-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .book-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      overflow: hidden;
+      .book-img {
+        display: flex;
+        img {
+          width: 130px;
+          border: 4px;
+          height: 200px;
+          object-fit: cover;
+        }
+      }
+      .book-info {
+        flex: 0 1 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        .book-category {
+          color: #666666;
+          font-weight: 600;
+          font-size: 16px;
+          margin-top: 4px;
+        }
+        .book-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: #333;
+          display: block;
+          margin: 8px 0;
+        }
+        .book-price {
+          color: #62ab00;
+          font-weight: 600;
+          font-size: 20px;
+        }
+        app-button-control {
+          display: flex;
+          justify-content: flex-end;
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .books-inner {
+    flex-direction: row !important;
+    .book-item {
+      flex-basis: 100%;
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .books-inner {
+    flex-direction: column !important;
+    .book-item {
+      flex-basis: 100%;
+    }
+  }
+}

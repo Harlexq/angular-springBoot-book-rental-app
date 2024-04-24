@@ -1,0 +1,32 @@
+.content {
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 24px 4px rgba(186, 186, 186, 1);
+
+  h2 {
+    padding: 10px 0;
+    margin-left: 20px;
+    position: relative;
+    font-size: 18px;
+
+    &::before {
+      content: "";
+      width: 15px;
+      height: 3px;
+      background-color: #62ab00;
+      position: absolute;
+      top: calc(50% - 2px);
+      left: -20px;
+    }
+  }
+
+  ::ng-deep {
+    p-chart {
+      canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+}

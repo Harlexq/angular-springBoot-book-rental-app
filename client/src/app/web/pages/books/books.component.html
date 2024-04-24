@@ -1,0 +1,43 @@
+<div class="books">
+  <div class="sidenav">
+    <app-filter-sidenav />
+  </div>
+  <div class="books-content">
+    <div class="cards" *ngIf="books.length > 0">
+      <div class="card" *ngFor="let book of pagedBooks">
+        <div class="card-head">
+          <img [src]="book.image" [alt]="book.title" />
+        </div>
+        <div class="card-body">
+          <h2 class="title">{{ book.title }}</h2>
+          <p class="desc" [innerHTML]="book.description"></p>
+        </div>
+        <div class="card-foot">
+          <app-button-control
+            content="Kitabı Gör"
+            [path]="'/book-detail/' + book.id"
+          />
+          <app-button-control
+            color="warning"
+            (click)="rent(book.id)"
+            [disabled]="book.rentedFrom != -1"
+            [content]="
+              book.rentedFrom == -1
+                ? book.price + ' ₺ / Kirala'
+                : 'Kiralanamaz'
+            "
+          />
+        </div>
+      </div>
+    </div>
+
+    <p-paginator
+      [rows]="rows"
+      [totalRecords]="books.length"
+      [rowsPerPageOptions]="rowSize"
+      (onPageChange)="onPageChange($event)"
+    />
+  </div>
+</div>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

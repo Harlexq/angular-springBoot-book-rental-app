@@ -1,0 +1,29 @@
+<div class="content">
+  <h2>Kiralanmış Kitaplar</h2>
+  <p-table [value]="pagedBooks">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Kitap Fotoğrafı</th>
+        <th>Kitap Adı</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-book>
+      <tr>
+        <td>
+          <div class="img">
+            <img [src]="book.image" [alt]="book.title" />
+          </div>
+        </td>
+        <td>{{ book.title }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-paginator
+    *ngIf="books.length > 3"
+    [rows]="rows"
+    [totalRecords]="books.length"
+    [rowsPerPageOptions]="rowSize"
+    (onPageChange)="onPageChange($event)"
+  />
+</div>

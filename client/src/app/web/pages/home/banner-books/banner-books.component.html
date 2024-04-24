@@ -1,0 +1,22 @@
+<div class="books">
+  <div class="books-inner">
+    <h2>Önerilen Kitaplar</h2>
+    <article class="book-item" *ngFor="let book of books">
+      <div class="book-img">
+        <img [src]="book.image" alt="" />
+      </div>
+      <div class="book-info">
+        <p class="book-category">{{ categoryName(book.categoryId) }}</p>
+        <a [routerLink]="'/book-detail/' + book.id" class="book-title">{{
+          book.title
+        }}</a>
+        <p class="book-price">{{ book.price | currency }}</p>
+        <app-button-control
+          color="warning"
+          [path]="'/book-detail/' + book.id"
+          content="Kitabı Gör"
+        />
+      </div>
+    </article>
+  </div>
+</div>

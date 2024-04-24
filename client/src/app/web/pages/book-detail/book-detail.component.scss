@@ -1,0 +1,61 @@
+.book-content {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 40px 0;
+
+  .book-img {
+    flex: 0 1 calc(40% - 30px);
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    padding: 25px;
+    img {
+      width: 100%;
+      border-radius: 3px;
+    }
+  }
+
+  .book-feature {
+    flex: 0 1 calc(60% - 30px);
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    padding: 25px;
+    .title {
+      font-size: 36px;
+    }
+    .author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0 8px 0;
+      border-bottom: 1px solid #ccc;
+    }
+    .desc {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #444444;
+      line-height: 18px;
+    }
+    .feauture {
+      margin-top: 15px;
+      p {
+        margin: 8px 0;
+      }
+    }
+    .rent {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .book-img {
+    flex: 0 1 calc(100% - 30px) !important;
+  }
+
+  .book-feature {
+    flex: 0 1 calc(100% - 30px) !important;
+  }
+}

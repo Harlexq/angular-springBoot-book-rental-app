@@ -1,0 +1,38 @@
+<div class="p-20">
+  <ng-container *ngIf="path">
+    <a
+      [routerLink]="path"
+      class="btn"
+      [ngClass]="
+        color === 'primary'
+          ? 'btn-primary'
+          : color === 'warning'
+          ? 'btn-warning'
+          : color === 'danger'
+          ? 'btn-danger'
+          : ''
+      "
+    >
+      {{ content }}
+    </a>
+  </ng-container>
+
+  <ng-container *ngIf="!path">
+    <button
+      class="btn"
+      type="submit"
+      [disabled]="disabled"
+      [ngClass]="
+        color === 'primary'
+          ? 'btn-primary'
+          : color === 'warning'
+          ? 'btn-warning'
+          : color === 'danger'
+          ? 'btn-danger'
+          : ''
+      "
+    >
+      {{ content }}
+    </button>
+  </ng-container>
+</div>

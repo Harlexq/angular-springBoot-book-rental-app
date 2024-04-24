@@ -1,0 +1,30 @@
+.profile {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin: 25px 0;
+  .form {
+    flex: 0 1 calc(50% - 25px);
+  }
+  .profile-info {
+    flex: 0 1 calc(50% - 25px);
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    p {
+      font-size: 15px;
+      margin: 3px 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .form {
+    flex: 0 1 calc(100% - 25px) !important;
+  }
+  .profile-info {
+    flex: 0 1 calc(100% - 25px) !important;
+  }
+}

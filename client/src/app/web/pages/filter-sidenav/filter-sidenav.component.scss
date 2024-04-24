@@ -1,0 +1,42 @@
+.sidenav {
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #161616;
+  border-radius: 4px;
+  height: 100vh;
+
+  .side-title {
+    font-size: 20px;
+    color: #000;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+
+  .select {
+    ::ng-deep {
+      .p-multiselect {
+        width: 100%;
+        padding: 10px;
+        .p-multiselect-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 10px;
+          .p-multiselect-filter {
+            padding: 10px;
+            .p-element {
+              position: absolute;
+              top: 14px;
+            }
+          }
+        }
+        .p-ripple {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<p-galleria
+  [value]="banners"
+  [showItemNavigators]="true"
+  [showThumbnails]="false"
+  [showIndicators]="true"
+  [showIndicatorsOnItem]="true"
+  [containerStyle]="{ 'max-width': '100%', 'margin-top': '35px' }"
+>
+  <ng-template pTemplate="item" let-banner>
+    <img [src]="banner.image" class="img" />
+  </ng-template>
+</p-galleria>

@@ -1,0 +1,13 @@
+<div class="books">
+  <div class="title">
+    <h2>Popüler Kitap</h2>
+  </div>
+  <a
+    *ngFor="let book of books"
+    class="content"
+    [routerLink]="'/book-detail/' + book.id"
+  >
+    <h2>{{ book.title }}</h2>
+    <img [src]="book.image" [alt]="book.title" />
+  </a>
+</div>

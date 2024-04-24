@@ -1,0 +1,47 @@
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="mobile-menu">
+        <button type="button" (click)="menuShow()" class="head-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <menu class="menu">
+          <button class="close" type="button" (click)="menuClose()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <nav class="mobile-nav" *ngIf="mobileMenu">
+            <a
+              *ngFor="let item of navItems"
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-item"
+            >
+              {{ item.title }}
+            </a>
+          </nav>
+        </menu>
+      </div>
+      <a routerLink="/admin" class="head-brand">
+        <img src="./assets/img/logo.png" alt="" />
+      </a>
+      <nav class="nav">
+        <a
+          *ngFor="let item of navItems"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item"
+        >
+          {{ item.title }}
+        </a>
+      </nav>
+      <div class="profile">
+        <p>{{ username }}</p>
+        <div class="user-dropdown-content">
+          <button (click)="logout()" class="dropdown-item">Çıkış Yap</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,68 @@
+<div class="btn-right">
+  <app-button-control (click)="toggleSidebar()" content="Blog Ekle" />
+</div>
+
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  position="right"
+  styleClass="w-30"
+  appSidebar
+>
+  <app-blog-feature [selectedBlogId]="selectedBlogId" />
+</p-sidebar>
+
+<p-table [value]="pagedBlogs">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Blog ID</th>
+      <th>Blog Kapak Fotoğrafı</th>
+      <th>Blog İsmi</th>
+      <th>Blog Açıklaması</th>
+      <th>Blog Yayın Tarihi</th>
+      <th>İşlemler</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-blog>
+    <tr>
+      <td>{{ blog.id }}</td>
+      <td>
+        <div class="img">
+          <img [src]="blog.image" [alt]="blog.title" width="50px" />
+        </div>
+      </td>
+      <td>
+        <p class="title">
+          {{ blog.title }}
+        </p>
+      </td>
+      <td>
+        <p class="desc" [innerHTML]="blog.description"></p>
+      </td>
+      <td>{{ blog.publishDate }}</td>
+      <td>
+        <div class="edit">
+          <app-button-control
+            color="warning"
+            (click)="toggleSidebar(blog.id)"
+            content="Düzenle"
+          />
+          <p-button
+            (click)="deleteBlog(blog.id)"
+            icon="pi pi-times"
+            label="Sil"
+            styleClass="btn btn-danger"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-paginator
+  [rows]="rows"
+  [totalRecords]="blogs.length"
+  [rowsPerPageOptions]="rowSize"
+  (onPageChange)="onPageChange($event)"
+/>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

@@ -1,0 +1,35 @@
+<div class="content">
+  <h2 class="title">Kullanıcıyı Düzenle</h2>
+  <form [formGroup]="form" class="form" (ngSubmit)="updateUser()">
+    <app-input-control
+      [form]="form"
+      [fb]="newFirstName"
+      placeholder="Kullanıcı Adını Giriniz"
+    />
+    <app-input-control
+      [form]="form"
+      [fb]="newLastName"
+      placeholder="Kullanıcı Soyadını Giriniz"
+    />
+    <app-input-control
+      [form]="form"
+      [fb]="newEmail"
+      type="email"
+      placeholder="Kullanıcı E-Mail Adresini Giriniz"
+    />
+    <app-input-control
+      [form]="form"
+      [fb]="newPassword"
+      type="password"
+      placeholder="Kullanıcı Şifresini Giriniz"
+    />
+    <p-checkbox [formControl]="newBanned" [binary]="true" inputId="ny" />
+    <label for="ny" style="margin-left: 5px">Kullanıcıyı Banla</label>
+    <app-button-control
+      [disabled]="!form.valid"
+      content="Kullanıcıyı Güncelle"
+    />
+  </form>
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+</div>

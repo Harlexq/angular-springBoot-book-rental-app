@@ -1,0 +1,26 @@
+<div class="blogs-content">
+  <div class="cards" *ngIf="blogs.length > 0">
+    <div class="card" *ngFor="let blog of pagedBlogs">
+      <div class="card-head">
+        <img [src]="blog.image" [alt]="blog.title" />
+      </div>
+      <div class="card-body">
+        <h2 class="title">{{ blog.title }}</h2>
+        <p class="desc" [innerHTML]="blog.description"></p>
+      </div>
+      <div class="card-foot">
+        <app-button-control
+          content="Bloğu Gör"
+          [path]="'/blog-detail/' + blog.id"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-paginator
+    [rows]="rows"
+    [totalRecords]="blogs.length"
+    [rowsPerPageOptions]="rowSize"
+    (onPageChange)="onPageChange($event)"
+  />
+</div>

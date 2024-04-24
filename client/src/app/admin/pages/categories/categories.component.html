@@ -1,0 +1,59 @@
+<div class="btn-right">
+  <app-button-control (click)="toggleSidebar()" content="Kategori Ekle" />
+</div>
+
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  position="right"
+  styleClass="w-30"
+  appSidebar
+>
+  <app-category-feature [selectedCategoryId]="selectedCategoryId" />
+</p-sidebar>
+
+<p-table [value]="pagedCategories">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Kategori ID</th>
+      <th>Kategori İsmi</th>
+      <th>Kategori Açıklaması</th>
+      <th>İşlemler</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-category>
+    <tr>
+      <td>{{ category.id }}</td>
+      <td>
+        <div class="title">
+          {{ category.title }}
+        </div>
+      </td>
+      <td>{{ category.description }}</td>
+      <td>
+        <div class="edit">
+          <app-button-control
+            color="warning"
+            (click)="toggleSidebar(category.id)"
+            content="Düzenle"
+          ></app-button-control>
+          <p-button
+            (click)="deleteCategory(category.id)"
+            icon="pi pi-times"
+            label="Sil"
+            styleClass="btn btn-danger"
+            [attr.data-id]="category.id"
+          ></p-button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-paginator
+  [rows]="rows"
+  [totalRecords]="categories.length"
+  [rowsPerPageOptions]="rowSize"
+  (onPageChange)="onPageChange($event)"
+/>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

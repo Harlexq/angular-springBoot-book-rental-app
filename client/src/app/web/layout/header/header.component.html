@@ -1,0 +1,93 @@
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a routerLink="/" class="head-brand">
+        <img src="assets/img/logo.png" alt="" />
+      </a>
+      <div class="user">
+        <ng-container *ngIf="loggedInUsername === null; else showUser">
+          <app-button-control path="/login" content="Giriş Yap" />
+          <app-button-control path="/signup" content="Kayıt Ol" />
+        </ng-container>
+        <ng-template #showUser>
+          <div class="user-content">
+            <button class="user-dropdown">
+              <i class="fa-regular fa-user"></i>
+              <p>{{ loggedInUsername }}</p>
+            </button>
+            <div class="user-dropdown-content">
+              <a routerLink="/profile" class="dropdown-item">Profil</a>
+              <a routerLink="/rental-books" class="dropdown-item"
+                >Benim Kitaplarım</a
+              >
+              <button (click)="logout()" class="dropdown-item">
+                Çıkış Yap
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</header>
+<header class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <div class="mobile-menu">
+        <button type="button" (click)="menuShow()" class="head-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <menu class="menu">
+          <button class="close" type="button" (click)="menuClose()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <nav class="mobile-nav" *ngIf="mobileMenu">
+            <a
+              *ngFor="let item of navItems"
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-item"
+            >
+              {{ item.title }}
+            </a>
+          </nav>
+        </menu>
+      </div>
+      <div class="categories">
+        <button type="button" class="category-btn">
+          Kategoriler
+          <i class="fa-solid fa-angle-down"></i>
+        </button>
+        <nav class="category-content">
+          <a
+            [routerLink]="'/books'"
+            [queryParams]="{ categoryId: category.id }"
+            class="category-item"
+            *ngFor="let category of categories"
+          >
+            {{ category.title }}
+          </a>
+        </nav>
+      </div>
+      <nav class="nav">
+        <a
+          *ngFor="let item of navItems"
+          [routerLink]="item?.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item"
+        >
+          {{ item.title }}
+        </a>
+      </nav>
+      <div class="support">
+        <i class="fa-solid fa-headphones-simple"></i>
+        <div class="support-text">
+          <p>Ücretsiz 7/24 Destek</p>
+          <p>+01-202-555-0181</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,40 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="login()" class="form">
+    <div class="title">
+      <h1>Kitapçı Dayı'ya Giriş Yap</h1>
+    </div>
+    <app-input-control
+      [fb]="newEmail"
+      [form]="form"
+      placeholder="E-Mail Adresinizi Giriniz"
+    />
+    <ng-container *ngIf="newEmail.invalid && newEmail.dirty">
+      <p *ngIf="newEmail.errors?.['required']">E-Mail Adresi Zorunludur</p>
+      <p *ngIf="newEmail.errors?.['email']">
+        E-Mail Adresi Doğru Format'da Olmalıdır
+      </p>
+    </ng-container>
+    <div class="password">
+      <app-input-control
+        [fb]="newPassword"
+        [type]="passType"
+        [form]="form"
+        placeholder="Şifrenizi Giriniz"
+      />
+      <ng-container *ngIf="newPassword.invalid && newPassword.dirty">
+        <p *ngIf="newPassword.errors?.['required']">Şifre Alanı Zorunludur</p>
+      </ng-container>
+      <p>{{ userError }}</p>
+      <button type="button" (click)="passwordShow()" class="password-btn">
+        <ng-container *ngIf="passType == 'password'; else textInput">
+          <i class="fa-regular fa-eye"></i>
+        </ng-container>
+        <ng-template #textInput>
+          <i #textInput class="fa-regular fa-eye-slash"></i
+        ></ng-template>
+      </button>
+    </div>
+    <app-button-control [disabled]="!form.valid" content="Giriş Yap" />
+    <a class="to-link" routerLink="/signup">Hesabın Yokmu?</a>
+  </form>
+</div>

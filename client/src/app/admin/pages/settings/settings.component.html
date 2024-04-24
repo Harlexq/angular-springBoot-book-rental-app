@@ -1,0 +1,72 @@
+<div class="content">
+  <div class="left">
+    <h2>Banner Ayarları</h2>
+    <div class="banner">
+      <ng-container *ngFor="let banner of banners">
+        <div class="banner-container">
+          <img [src]="banner.image" />
+          <button
+            class="banner-btn"
+            type="button"
+            (click)="deleteBanner(banner.id)"
+          >
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </ng-container>
+      <button class="banner-create" (click)="showDialog()">
+        <i class="fa-solid fa-plus"></i>
+        Banner Ekle
+      </button>
+      <p-dialog
+        header="Banner Ekle"
+        [(visible)]="visible"
+        [modal]="true"
+        [style]="{ width: '30vw' }"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <form (ngSubmit)="addBanner()">
+          <app-input-control
+            [form]="bannerForm"
+            [fb]="newBanner"
+            type="file"
+            (change)="onFileSelected($event)"
+          />
+          <app-button-control
+            [disabled]="!bannerForm.valid"
+            content="Banner Ekle"
+          />
+        </form>
+      </p-dialog>
+    </div>
+  </div>
+  <div class="right">
+    <h2>İletişim Bilgileri</h2>
+    <form [formGroup]="settingForm" class="form" (ngSubmit)="updateSettings()">
+      <app-input-control
+        [form]="settingForm"
+        [fb]="newPhone"
+        type="tel"
+        placeholder="Telefon Numarasını Giriniz"
+      />
+      <app-input-control
+        [form]="settingForm"
+        [fb]="newEmail"
+        type="email"
+        placeholder="E-Mail Adresini Giriniz"
+      />
+      <app-input-control
+        [form]="settingForm"
+        [fb]="newAddress"
+        placeholder="Firma Adresinizi Giriniz"
+      />
+      <app-button-control [disabled]="!settingForm.valid" content="Güncelle" />
+      <p-toast></p-toast>
+      <p-confirmDialog></p-confirmDialog>
+    </form>
+  </div>
+</div>
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

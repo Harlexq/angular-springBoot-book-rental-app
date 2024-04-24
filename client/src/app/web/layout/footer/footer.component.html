@@ -1,0 +1,50 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a routerLink="/" class="footer-brand">
+        <img src="assets/img/logo.png" alt="Logo" />
+      </a>
+      <menu class="menu">
+        <h2>Popüler Kitaplar</h2>
+        <nav class="nav">
+          <a
+            [routerLink]="'/book-detail/' + book.id"
+            class="nav-item"
+            *ngFor="let book of books"
+            >{{ book.title }}</a
+          >
+        </nav>
+      </menu>
+      <menu class="menu">
+        <h2>Kategoriler</h2>
+        <nav class="nav">
+          <a
+            class="nav-item"
+            *ngFor="let category of categories"
+            routerLink="/books/"
+            [queryParams]="{ categoryId: category.id }"
+            >{{ category.title }}</a
+          >
+        </nav>
+      </menu>
+      <menu class="menu">
+        <h2>Sayfalar</h2>
+        <nav class="nav">
+          <a
+            [routerLink]="navItem.path"
+            class="nav-item"
+            *ngFor="let navItem of navItems"
+            >{{ navItem.title }}</a
+          >
+        </nav>
+      </menu>
+    </div>
+  </div>
+</footer>
+<div class="copyright">
+  <p>
+    Copyright © 2024
+    <a href="https://serhanbakir.com.tr" target="_blank">Serhan Bakır</a>. All
+    rights reserved.
+  </p>
+</div>

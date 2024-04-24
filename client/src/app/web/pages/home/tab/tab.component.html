@@ -1,0 +1,65 @@
+<p-tabView [activeIndex]="0">
+  <p-tabPanel header="Romanlar">
+    <div class="card-container">
+      <div class="card" *ngFor="let roman of romans">
+        <a [routerLink]="'book-detail/' + roman.id" class="card-head">
+          <img [src]="roman.image" [alt]="roman.title" />
+        </a>
+        <div class="card-body">
+          <a
+            [routerLink]="'book-detail/' + roman.id"
+            class="title"
+            [title]="roman.title"
+            >{{ roman.title }}</a
+          >
+          <p class="publisher">{{ roman.publisher }}</p>
+        </div>
+        <div class="card-foot">
+          <p class="price">{{ roman.price | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Tarih Kitapları">
+    <div class="card-container">
+      <div class="card" *ngFor="let history of historys">
+        <a [routerLink]="'book-detail/' + history.id" class="card-head">
+          <img [src]="history.image" [alt]="history.title" />
+        </a>
+        <div class="card-body">
+          <a
+            [routerLink]="'book-detail/' + history.id"
+            class="title"
+            [title]="history.title"
+            >{{ history.title }}</a
+          >
+          <p class="publisher">{{ history.publisher }}</p>
+        </div>
+        <div class="card-foot">
+          <p class="price">{{ history.price | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Klasik Kitaplar">
+    <div class="card-container">
+      <div class="card" *ngFor="let classic of classics">
+        <a [routerLink]="'book-detail/' + classic.id" class="card-head">
+          <img [src]="classic.image" [alt]="classic.title" />
+        </a>
+        <div class="card-body">
+          <a
+            [routerLink]="'book-detail/' + classic.id"
+            class="title"
+            [title]="classic.title"
+            >{{ classic.title }}</a
+          >
+          <p class="publisher">{{ classic.publisher }}</p>
+        </div>
+        <div class="card-foot">
+          <p class="price">{{ classic.price | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>
