@@ -4,3 +4,13 @@
     color: #62ab00;
   }
 }
+::ng-deep {
+  p-button {
+    button {
+      width: 100%;
+    }
+  }
+  p-checkbox {
+    margin: 10px 0;
+  }
+}

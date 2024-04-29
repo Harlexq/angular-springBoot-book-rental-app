@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [RentalBooksComponent],
@@ -19,6 +20,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     SharedModule,
     ToastModule,
     ConfirmDialogModule,
+    TableModule,
   ],
 })
 export class RentalBooksModule {}

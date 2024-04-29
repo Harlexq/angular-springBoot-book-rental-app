@@ -4,31 +4,38 @@
   </div>
   <div class="books-content">
     <div class="cards" *ngIf="books.length > 0">
-      <div class="card" *ngFor="let book of pagedBooks">
-        <div class="card-head">
-          <img [src]="book.image" [alt]="book.title" />
-        </div>
-        <div class="card-body">
-          <h2 class="title">{{ book.title }}</h2>
-          <p class="desc" [innerHTML]="book.description"></p>
-        </div>
-        <div class="card-foot">
-          <app-button-control
-            content="Kitabı Gör"
-            [path]="'/book-detail/' + book.id"
+      <p-card
+        [header]="book.title"
+        [subheader]="getCategoryName(book.categoryId)"
+        class="card"
+        *ngFor="let book of pagedBooks"
+      >
+        <ng-template pTemplate="header">
+          <img [alt]="book.title" [src]="book.image" />
+        </ng-template>
+        <p [innerHTML]="book.description.slice(0, 40) + '...'"></p>
+        <ng-template
+          pTemplate="footer"
+          style="display: flex; justify-content: space-between"
+        >
+          <p-button
+            label="Kitabı Gör"
+            severity="success"
+            size="small"
+            [routerLink]="'/book-detail/' + book.id"
           />
-          <app-button-control
-            color="warning"
+          <p-button
+            [label]="
+              book.rentedFrom == -1 ? book.price + ' ₺ / Kirala' : 'Kiralanamaz'
+            "
+            severity="warning"
+            size="small"
             (click)="rent(book.id)"
             [disabled]="book.rentedFrom != -1"
-            [content]="
-              book.rentedFrom == -1
-                ? book.price + ' ₺ / Kirala'
-                : 'Kiralanamaz'
-            "
+            [routerLink]="'/book-detail/' + book.id"
           />
-        </div>
-      </div>
+        </ng-template>
+      </p-card>
     </div>
 
     <p-paginator
@@ -39,5 +46,5 @@
     />
   </div>
 </div>
-<p-toast></p-toast>
-<p-confirmDialog></p-confirmDialog>
+<p-toast />
+<p-confirmDialog />

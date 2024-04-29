@@ -7,6 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [BookFeatureComponent],
@@ -19,6 +24,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     AngularEditorModule,
     ToastModule,
     ConfirmDialogModule,
+    ButtonModule,
+    InputTextModule,
+    CalendarModule,
+    EditorModule,
+    FileUploadModule,
   ],
   exports: [BookFeatureComponent],
 })

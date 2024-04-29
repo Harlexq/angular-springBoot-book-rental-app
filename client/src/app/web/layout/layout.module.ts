@@ -6,6 +6,7 @@ import { WebLayoutComponent } from './layout.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, WebLayoutComponent],
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     RouterLinkActive,
     SharedModule,
     FormsModule,
+    ButtonModule,
   ],
 })
 export class LayoutModule {}

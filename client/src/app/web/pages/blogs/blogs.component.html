@@ -1,20 +1,19 @@
 <div class="blogs-content">
   <div class="cards" *ngIf="blogs.length > 0">
-    <div class="card" *ngFor="let blog of pagedBlogs">
-      <div class="card-head">
-        <img [src]="blog.image" [alt]="blog.title" />
-      </div>
-      <div class="card-body">
-        <h2 class="title">{{ blog.title }}</h2>
-        <p class="desc" [innerHTML]="blog.description"></p>
-      </div>
-      <div class="card-foot">
-        <app-button-control
-          content="Bloğu Gör"
-          [path]="'/blog-detail/' + blog.id"
+    <p-card [header]="blog.title" class="card" *ngFor="let blog of pagedBlogs">
+      <ng-template pTemplate="header">
+        <img [alt]="blog.title" [src]="blog.image" />
+      </ng-template>
+      <p [innerHTML]="blog.description.slice(0, 40) + '...'"></p>
+      <ng-template pTemplate="footer">
+        <p-button
+          label="Bloğu Gör"
+          severity="success"
+          size="small"
+          [routerLink]="'/blog-detail/' + blog.id"
         />
-      </div>
-    </div>
+      </ng-template>
+    </p-card>
   </div>
 
   <p-paginator

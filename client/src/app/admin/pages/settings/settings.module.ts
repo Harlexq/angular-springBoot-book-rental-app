@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [SettingsComponent],
@@ -23,7 +25,9 @@ import { DialogModule } from 'primeng/dialog';
     FormsModule,
     ToastModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    FileUploadModule,
+    InputTextModule,
   ],
 })
 export class SettingsModule {}

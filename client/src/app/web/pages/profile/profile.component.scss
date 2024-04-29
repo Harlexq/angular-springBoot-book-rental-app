@@ -6,6 +6,13 @@
   margin: 25px 0;
   .form {
     flex: 0 1 calc(50% - 25px);
+    ::ng-deep {
+      p-button {
+        button {
+          width: 100%;
+        }
+      }
+    }
   }
   .profile-info {
     flex: 0 1 calc(50% - 25px);

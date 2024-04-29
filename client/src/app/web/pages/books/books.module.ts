@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FilterSidenavModule } from '../filter-sidenav/filter-sidenav.module';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [BooksComponent],
@@ -23,6 +24,7 @@ import { FilterSidenavModule } from '../filter-sidenav/filter-sidenav.module';
     ToastModule,
     ConfirmDialogModule,
     FilterSidenavModule,
+    CardModule,
   ],
 })
 export class BooksModule {}

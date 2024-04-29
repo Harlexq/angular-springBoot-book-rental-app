@@ -1,17 +1,3 @@
-::ng-deep {
-  .p-tabview-nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    height: 40px;
-    .ng-star-inserted {
-      &::marker {
-        content: "";
-      }
-    }
-  }
-}
-
 .card-container {
   display: flex;
   align-items: flex-start;

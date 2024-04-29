@@ -4,6 +4,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Books } from 'src/app/models/Books';
 import { HttpClientService } from 'src/app/services/http-client.service';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from 'src/app/models/Category';
 
 @Component({
   selector: 'app-books',
@@ -13,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BooksComponent {
   books: Books[] = [];
   pagedBooks: Books[] = [];
+  categories: Category[] = [];
   rows: number = 9;
   first: number = 0;
   rowSize: number[] = [9, 18, 27, 36];
@@ -27,6 +29,7 @@ export class BooksComponent {
 
   ngOnInit() {
     this.getBooks();
+    this.getCategories();
 
     this.activatedRoute.queryParams.subscribe((params) => {
       const categoryId = params['categoryId'];
@@ -45,6 +48,12 @@ export class BooksComponent {
     });
   }
 
+  getCategories() {
+    this.http.get<Category[]>('categoryReadAll', (res) => {
+      this.categories = res;
+    });
+  }
+
   getBooksByCategory(categoryId: string) {
     this.http.get<Books[]>(`bookReadAll?categoryId=${categoryId}`, (res) => {
       this.books = res;
@@ -60,6 +69,11 @@ export class BooksComponent {
     this.first = event.first;
     this.rows = event.rows;
     this.paginateBooks();
+  }
+
+  getCategoryName(categoryId: number): string {
+    const category = this.categories.find((c) => c.id === categoryId);
+    return category ? category.title : '';
   }
 
   rent(bookId: number) {

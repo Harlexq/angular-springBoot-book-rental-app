@@ -1,16 +1,11 @@
 import { Component, Input } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BlogsComponent } from '../blogs/blogs.component';
 import { Blogs } from 'src/app/models/Blogs';
 import { HttpClientService } from 'src/app/services/http-client.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-blog-feature',
@@ -20,42 +15,8 @@ import { HttpClientService } from 'src/app/services/http-client.service';
 export class BlogFeatureComponent {
   @Input() selectedBlogId: number | null;
   form!: FormGroup;
-  editorDescription: string = '';
   selectedFile: File | null = null;
   image: string = '';
-
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: 'auto',
-    minHeight: '250px',
-    translate: 'yes',
-    enableToolbar: true,
-    placeholder: 'Blog Açıklamasını Giriniz',
-    defaultParagraphSeparator: '',
-    fonts: [
-      { class: 'arial', name: 'Arial' },
-      { class: 'times-new-roman', name: 'Times New Roman' },
-      { class: 'calibri', name: 'Calibri' },
-      { class: 'comic-sans-ms', name: 'Comic Sans MS' },
-    ],
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText',
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-    sanitize: false,
-  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -80,7 +41,7 @@ export class BlogFeatureComponent {
         this.form.patchValue({
           title: res.title,
           description: res.description,
-          publishDate: res.publishDate,
+          publishDate: formatDate(res.publishDate, 'yyyy-MM-dd', 'en-US'),
         });
       });
     }
@@ -96,7 +57,7 @@ export class BlogFeatureComponent {
   }
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0] as File;
+    this.selectedFile = event.files[0] as File;
   }
 
   addBlog(id?: number) {
@@ -121,7 +82,14 @@ export class BlogFeatureComponent {
           formData.append('image', this.selectedFile);
           formData.append('title', this.form.get('title').value);
           formData.append('description', this.form.get('description').value);
-          formData.append('publishDate', this.form.get('publishDate').value);
+          formData.append(
+            'publishDate',
+            formatDate(
+              this.form.get('publishDate').value,
+              'yyyy-MM-dd',
+              'en-US'
+            )
+          );
 
           this.http.put<any>(`blogUpdate`, id, formData, () => {
             this.router.navigateByUrl('/admin/blogs');
@@ -158,7 +126,14 @@ export class BlogFeatureComponent {
           formData.append('image', this.selectedFile);
           formData.append('title', this.form.get('title').value);
           formData.append('description', this.form.get('description').value);
-          formData.append('publishDate', this.form.get('publishDate').value);
+          formData.append(
+            'publishDate',
+            formatDate(
+              this.form.get('publishDate').value,
+              'yyyy-MM-dd',
+              'en-US'
+            )
+          );
 
           this.http.post<any>(`blogCreate`, formData, (res) => {
             this.router.navigateByUrl('/admin/blogs');
@@ -175,21 +150,5 @@ export class BlogFeatureComponent {
         },
       });
     }
-  }
-
-  get newTitle(): FormControl {
-    return this.form.get('title') as FormControl;
-  }
-
-  get newDescription(): FormControl {
-    return this.form.get('description') as FormControl;
-  }
-
-  get newImage(): FormControl {
-    return this.form.get('image') as FormControl;
-  }
-
-  get newpublishDate(): FormControl {
-    return this.form.get('publishDate') as FormControl;
   }
 }

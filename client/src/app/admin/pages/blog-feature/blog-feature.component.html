@@ -9,38 +9,55 @@
     enctype="multipart/form-data"
     (ngSubmit)="selectedBlogId !== null ? addBlog(selectedBlogId) : addBlog()"
   >
-    <app-input-control
-      [form]="form"
-      [fb]="newTitle"
+    <input
+      pInputText
+      formControlName="title"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Blog Adını Giriniz"
     />
-    <ng-container *ngIf="newTitle.invalid && newTitle.dirty">
-      <p *ngIf="newTitle.errors?.['required']">Blog Adı Zorunludur</p>
+    <ng-container *ngIf="form.get('title').invalid && form.get('title').dirty">
+      <p *ngIf="form.get('title').errors?.['required']">Blog Adı Zorunludur</p>
     </ng-container>
-    <angular-editor [formControl]="newDescription" [config]="editorConfig" />
-    <ng-container *ngIf="newDescription.invalid && newDescription.dirty">
-      <p *ngIf="newDescription.errors?.['required']">
+    <p-editor
+      formControlName="description"
+      [style]="{ height: '250px' }"
+      placeholder="Kitap Açıklamasını Giriniz"
+    />
+    <ng-container
+      *ngIf="form.get('description').invalid && form.get('description').dirty"
+    >
+      <p *ngIf="form.get('description').errors?.['required']">
         Blog Açıklaması Zorunludur
       </p>
     </ng-container>
-    <app-input-control
-      [form]="form"
-      [fb]="newImage"
-      type="file"
-      (change)="onFileSelected($event)"
+    <p-fileUpload
+      mode="basic"
+      name="image"
+      chooseLabel="Dosya Seç"
+      (onSelect)="onFileSelected($event)"
+      accept=".jpg,.png,.jpeg"
     />
     <img [src]="image" alt="" width="80px" />
-    <app-input-control [form]="form" [fb]="newpublishDate" type="date" />
-    <ng-container *ngIf="newpublishDate.invalid && newpublishDate.dirty">
-      <p *ngIf="newpublishDate.errors?.['required']">
+    <p-calendar
+      formControlName="publishDate"
+      name="publishDate"
+      placeholder="Blog Yayın Tarihini Giriniz"
+      dateFormat="yy-mm-dd"
+    />
+    <ng-container
+      *ngIf="form.get('publishDate').invalid && form.get('publishDate').dirty"
+    >
+      <p *ngIf="form.get('publishDate').errors?.['required']">
         Blog Yayın Tarihi Zorunludur
       </p>
     </ng-container>
-    <app-button-control
+    <p-button
+      type="submit"
+      [label]="selectedBlogId !== null ? 'Bloğu Güncelle' : 'Blog Ekle'"
       [disabled]="!form.valid"
-      [content]="selectedBlogId !== null ? 'Bloğu Güncelle' : 'Blog Ekle'"
+      severity="success"
+      size="small"
     />
-    <p-toast></p-toast>
-    <p-confirmDialog></p-confirmDialog>
   </form>
 </div>
+<p-toast />

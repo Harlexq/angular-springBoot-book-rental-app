@@ -5,19 +5,25 @@
       <ng-container *ngFor="let banner of banners">
         <div class="banner-container">
           <img [src]="banner.image" />
-          <button
-            class="banner-btn"
+          <p-button
             type="button"
             (click)="deleteBanner(banner.id)"
+            severity="danger"
+            class="banner-btn"
           >
             <i class="fa-solid fa-trash"></i>
-          </button>
+          </p-button>
         </div>
       </ng-container>
-      <button class="banner-create" (click)="showDialog()">
+      <p-button
+        type="button"
+        (click)="showDialog()"
+        severity="success"
+        class="banner-create"
+        label="Banner Ekle"
+      >
         <i class="fa-solid fa-plus"></i>
-        Banner Ekle
-      </button>
+      </p-button>
       <p-dialog
         header="Banner Ekle"
         [(visible)]="visible"
@@ -26,16 +32,20 @@
         [draggable]="false"
         [resizable]="false"
       >
-        <form (ngSubmit)="addBanner()">
-          <app-input-control
-            [form]="bannerForm"
-            [fb]="newBanner"
-            type="file"
-            (change)="onFileSelected($event)"
+        <form [formGroup]="bannerForm" (ngSubmit)="addBanner()">
+          <p-fileUpload
+            mode="basic"
+            name="image"
+            chooseLabel="Dosya Seç"
+            (onSelect)="onFileSelected($event)"
+            accept=".jpg,.png,.jpeg"
           />
-          <app-button-control
-            [disabled]="!bannerForm.valid"
-            content="Banner Ekle"
+          <p-button
+            type="submit"
+            [disabled]="!selectedFile"
+            severity="success"
+            label="Banner Ekle"
+            size="small"
           />
         </form>
       </p-dialog>
@@ -44,29 +54,36 @@
   <div class="right">
     <h2>İletişim Bilgileri</h2>
     <form [formGroup]="settingForm" class="form" (ngSubmit)="updateSettings()">
-      <app-input-control
-        [form]="settingForm"
-        [fb]="newPhone"
+      <input
         type="tel"
+        pInputText
+        formControlName="phone"
+        style="width: 100%; margin-bottom: 10px"
         placeholder="Telefon Numarasını Giriniz"
       />
-      <app-input-control
-        [form]="settingForm"
-        [fb]="newEmail"
+      <input
         type="email"
+        pInputText
+        formControlName="phone"
+        style="width: 100%; margin-bottom: 10px"
         placeholder="E-Mail Adresini Giriniz"
       />
-      <app-input-control
-        [form]="settingForm"
-        [fb]="newAddress"
+      <input
+        pInputText
+        formControlName="phone"
+        style="width: 100%; margin-bottom: 10px"
         placeholder="Firma Adresinizi Giriniz"
       />
-      <app-button-control [disabled]="!settingForm.valid" content="Güncelle" />
-      <p-toast></p-toast>
-      <p-confirmDialog></p-confirmDialog>
+      <p-button
+        type="submit"
+        [disabled]="!settingForm.valid"
+        severity="success"
+        label="Güncelle"
+        size="small"
+      />
     </form>
   </div>
 </div>
 
-<p-toast></p-toast>
-<p-confirmDialog></p-confirmDialog>
+<p-toast />
+<p-confirmDialog />

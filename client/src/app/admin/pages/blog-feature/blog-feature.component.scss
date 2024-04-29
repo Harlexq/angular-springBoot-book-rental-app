@@ -5,9 +5,27 @@
   }
 }
 ::ng-deep {
-  p-dropdown {
-    .p-dropdown {
-      margin-bottom: 10px;
+  p-fileUpload {
+    .p-ripple {
+      width: 100%;
+      display: block;
+    }
+    .p-fileupload {
+      margin: 10px 0;
+    }
+    .p-button-label {
+      display: contents;
+    }
+  }
+  p-calendar {
+    .p-calendar {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+  p-button {
+    .p-button {
+      margin: 10px 0;
     }
   }
 }

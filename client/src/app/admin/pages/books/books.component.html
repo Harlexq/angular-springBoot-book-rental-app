@@ -1,5 +1,5 @@
 <div class="btn-right">
-  <app-button-control (click)="toggleSidebar()" content="Kitap Ekle" />
+  <p-button label="Kitap Ekle" size="small" (click)="toggleSidebar()" />
 </div>
 
 <p-sidebar
@@ -11,69 +11,70 @@
   <app-book-feature [selectedBookId]="selectedBookId" />
 </p-sidebar>
 
-<p-table [value]="pagedBooks">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Kitap ID</th>
-      <th>Kitap Kapak Fotoğrafı</th>
-      <th>Kitap İsmi</th>
-      <th>Kitap Açıklaması</th>
-      <th>Kitap Yayıncısı</th>
-      <th>Kitap Yazarı</th>
-      <th>Kitap Kategorisi</th>
-      <th>Kitap Fiyatı</th>
-      <th>Kitap Baskı Tarihi</th>
-      <th>Kitap Sayfa Sayısı</th>
-      <th>Kitap Kira Bilgisi</th>
-      <th>İşlemler</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-book>
-    <tr>
-      <td>{{ book.id }}</td>
-      <td>
-        <div class="img">
-          <img [src]="book.image" [alt]="book.title" width="50px" />
-        </div>
-      </td>
-      <td>
-        <p class="title">
+<div class="content">
+  <p-table [value]="pagedBooks">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Kitap ID</th>
+        <th>Kitap Kapak Fotoğrafı</th>
+        <th>Kitap İsmi</th>
+        <th>Kitap Açıklaması</th>
+        <th>Kitap Yayıncısı</th>
+        <th>Kitap Yazarı</th>
+        <th>Kitap Kategorisi</th>
+        <th>Kitap Fiyatı</th>
+        <th>Kitap Baskı Tarihi</th>
+        <th>Kitap Sayfa Sayısı</th>
+        <th>Kitap Kira Bilgisi</th>
+        <th>İşlemler</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-book>
+      <tr>
+        <td>{{ book.id }}</td>
+        <td>
+          <div class="img">
+            <img [src]="book.image" [alt]="book.title" />
+          </div>
+        </td>
+        <td>
           {{ book.title }}
-        </p>
-      </td>
-      <td>
-        <p class="desc" [innerHTML]="book.description"></p>
-      </td>
-      <td>{{ book.publisher }}</td>
-      <td>{{ book.author }}</td>
-      <td>{{ getCategoryName(book.categoryId) }}</td>
-      <td>{{ book.price }}</td>
-      <td>{{ book.publishDate | date : "MMMM, dd, y" : null : "tr" }}</td>
-      <td>{{ book.pageNumber }}</td>
-      <td>
-        <p>{{ book.isRented ? "Kiralandı" : "Kiralık" }}</p>
-        <p>
-          {{ book.isRented ? getUserName(book.rentedFrom) : "" }}
-        </p>
-      </td>
-      <td>
-        <div class="edit">
-          <app-button-control
-            color="warning"
-            (click)="toggleSidebar(book.id)"
-            content="Düzenle"
-          />
-          <p-button
-            (click)="deleteBook(book.id)"
-            icon="pi pi-times"
-            label="Sil"
-            styleClass="btn btn-danger"
-          />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+        </td>
+        <td>
+          <p [innerHTML]="book.description.slice(0, 70) + '...'"></p>
+        </td>
+        <td>{{ book.publisher }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ getCategoryName(book.categoryId) }}</td>
+        <td>{{ book.price }}</td>
+        <td>{{ book.publishDate | date : "MMMM, dd, y" : null : "tr" }}</td>
+        <td>{{ book.pageNumber }}</td>
+        <td>
+          <p>{{ book.isRented ? "Kiralandı" : "Kiralık" }}</p>
+          <p>
+            {{ book.isRented ? getUserName(book.rentedFrom) : "" }}
+          </p>
+        </td>
+        <td>
+          <div class="edit">
+            <p-button
+              (click)="toggleSidebar(book.id)"
+              label="Düzenle"
+              severity="warning"
+              size="small"
+            />
+            <p-button
+              (click)="deleteBook(book.id)"
+              label="Sil"
+              severity="danger"
+              size="small"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
 
 <p-paginator
   [rows]="rows"
@@ -81,5 +82,5 @@
   [rowsPerPageOptions]="rowSize"
   (onPageChange)="onPageChange($event)"
 />
-<p-toast></p-toast>
-<p-confirmDialog></p-confirmDialog>
+<p-toast />
+<p-confirmDialog />

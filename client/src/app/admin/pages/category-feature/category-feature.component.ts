@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Category } from 'src/app/models/Category';
@@ -130,13 +125,5 @@ export class CategoryFeatureComponent {
         },
       });
     }
-  }
-
-  get newTitle(): FormControl {
-    return this.form.get('title') as FormControl;
-  }
-
-  get newDescription(): FormControl {
-    return this.form.get('description') as FormControl;
   }
 }

@@ -19,9 +19,9 @@
   }
 
   ::ng-deep {
-    app-button-control {
-      .p-20 {
-        padding: 10px 0 0 0 !important;
+    p-button {
+      button {
+        width: 100%;
       }
     }
   }
@@ -30,7 +30,7 @@
     position: relative;
     .password-btn {
       position: absolute;
-      top: 5px;
+      top: 8px;
       right: 5px;
       background-color: #62ab00;
       border: none;

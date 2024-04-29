@@ -54,7 +54,7 @@ export class SettingsComponent {
   }
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0] as File;
+    this.selectedFile = event.files[0] as File;
   }
 
   addBanner() {
@@ -135,21 +135,5 @@ export class SettingsComponent {
         });
       },
     });
-  }
-
-  get newBanner(): FormControl {
-    return this.bannerForm.get('image') as FormControl;
-  }
-
-  get newPhone(): FormControl {
-    return this.settingForm.get('phone') as FormControl;
-  }
-
-  get newEmail(): FormControl {
-    return this.settingForm.get('email') as FormControl;
-  }
-
-  get newAddress(): FormControl {
-    return this.settingForm.get('address') as FormControl;
   }
 }

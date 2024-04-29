@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [CategoryFeatureComponent],
@@ -15,6 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ToastModule,
     ConfirmDialogModule,
+    ButtonModule,
+    InputTextModule,
   ],
   exports: [CategoryFeatureComponent],
 })

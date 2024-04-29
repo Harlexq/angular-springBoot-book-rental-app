@@ -16,7 +16,7 @@
       <th>Kullanıcı Hesap Oluşturma Tarihi</th>
       <th>Kullanıcı E-Mail Adresi</th>
       <th>Kiraladığı Kitaplar</th>
-      <th>Kullanıcı İşlemler</th>
+      <th>İşlemler</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-user>
@@ -27,29 +27,30 @@
       <td>{{ user.accountDate | date : "MMMM, dd, y" : null : "tr" }}</td>
       <td>{{ user.email }}</td>
       <td>
-        <ul class="user-books">
+        <div class="user-books">
           <ng-container *ngIf="user.rentalBooks.length > 0; else noBooks">
-            <li *ngFor="let userBook of user.rentalBooks">
+            <p *ngFor="let userBook of user.rentalBooks">
               Kitap Adı: <strong>{{ getBooksName(userBook.bookId) }}</strong>
-            </li>
+            </p>
           </ng-container>
           <ng-template #noBooks>
-            <li>Kitap Bulunamadı</li>
+            <p>Kitap Bulunamadı</p>
           </ng-template>
-        </ul>
+        </div>
       </td>
       <td>
         <div class="edit">
-          <app-button-control
-            color="warning"
+          <p-button
+            label="Düzenle"
             (click)="toggleSidebar(user.id)"
-            content="Düzenle"
+            severity="warning"
+            size="small"
           />
           <p-button
-            (click)="deleteUser(user.id)"
-            icon="pi pi-times"
             label="Sil"
-            styleClass="btn btn-danger"
+            (click)="deleteUser(user.id)"
+            severity="danger"
+            size="small"
           />
         </div>
       </td>
@@ -63,6 +64,6 @@
   [rowsPerPageOptions]="rowSize"
   (onPageChange)="onPageChange($event)"
 />
-<p-toast></p-toast>
-<p-confirmDialog></p-confirmDialog>
+<p-toast />
+<p-confirmDialog />
 <div *ngIf="pagedUsers.length === 0" class="empty">Kullanıcılar Bulunamadı</div>

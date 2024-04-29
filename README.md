@@ -62,10 +62,10 @@ Projenin çalışması için MongoDB'ye ihtiyaç duyulacaktır. Varsayılan olar
 - MongoDB
 
 ## Geliştirme Ortamı
-- 
-Angular: RxJS, PrimeNG
-Spring Boot: Java, Maven
-MongoDB: MongoDB Community Server
+
+- Angular: RxJS, PrimeNG
+- Spring Boot: Java, Maven
+- MongoDB: MongoDB Community Server
 
 ## Katkıda Bulunma
 

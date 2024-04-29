@@ -6,8 +6,18 @@
       </a>
       <div class="user">
         <ng-container *ngIf="loggedInUsername === null; else showUser">
-          <app-button-control path="/login" content="Giriş Yap" />
-          <app-button-control path="/signup" content="Kayıt Ol" />
+          <p-button
+            label="Giriş Yap"
+            severity="success"
+            size="small"
+            routerLink="/login"
+          />
+          <p-button
+            label="Kayıt Ol"
+            severity="success"
+            size="small"
+            routerLink="/signup"
+          />
         </ng-container>
         <ng-template #showUser>
           <div class="user-content">

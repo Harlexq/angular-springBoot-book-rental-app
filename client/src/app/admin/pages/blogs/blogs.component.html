@@ -1,5 +1,5 @@
 <div class="btn-right">
-  <app-button-control (click)="toggleSidebar()" content="Blog Ekle" />
+  <p-button label="Blog Ekle" size="small" (click)="toggleSidebar()" />
 </div>
 
 <p-sidebar
@@ -31,26 +31,25 @@
         </div>
       </td>
       <td>
-        <p class="title">
-          {{ blog.title }}
-        </p>
+        {{ blog.title }}
       </td>
       <td>
-        <p class="desc" [innerHTML]="blog.description"></p>
+        <p [innerHTML]="blog.description.slice(0, 25) + '...'"></p>
       </td>
       <td>{{ blog.publishDate }}</td>
       <td>
         <div class="edit">
-          <app-button-control
-            color="warning"
+          <p-button
             (click)="toggleSidebar(blog.id)"
-            content="Düzenle"
+            label="Düzenle"
+            severity="warning"
+            size="small"
           />
           <p-button
             (click)="deleteBlog(blog.id)"
-            icon="pi pi-times"
             label="Sil"
-            styleClass="btn btn-danger"
+            severity="danger"
+            size="small"
           />
         </div>
       </td>
@@ -64,5 +63,5 @@
   [rowsPerPageOptions]="rowSize"
   (onPageChange)="onPageChange($event)"
 />
-<p-toast></p-toast>
-<p-confirmDialog></p-confirmDialog>
+<p-toast />
+<p-confirmDialog />

@@ -19,16 +19,19 @@
         </p>
       </div>
       <div class="rent">
-        <app-button-control
-          (click)="rent()"
-          [disabled]="book.rentedFrom != -1"
-          [content]="
+        <p-button
+          [label]="
             book.rentedFrom == -1 ? book.price + ' ₺ / Kirala' : 'Kiralanamaz'
           "
+          severity="success"
+          size="small"
+          (click)="rent()"
+          [disabled]="book.rentedFrom != -1"
+          [routerLink]="'/book-detail/' + book.id"
         />
       </div>
     </div>
   </div>
 </div>
-<p-toast></p-toast>
-<p-confirmDialog></p-confirmDialog>
+<p-toast />
+<p-confirmDialog />

@@ -1,35 +1,50 @@
 <div class="content">
   <h2 class="title">Kullanıcıyı Düzenle</h2>
   <form [formGroup]="form" class="form" (ngSubmit)="updateUser()">
-    <app-input-control
-      [form]="form"
-      [fb]="newFirstName"
+    <input
+      type="text"
+      pInputText
+      formControlName="firstName"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Kullanıcı Adını Giriniz"
     />
-    <app-input-control
-      [form]="form"
-      [fb]="newLastName"
+    <input
+      type="text"
+      pInputText
+      formControlName="lastName"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Kullanıcı Soyadını Giriniz"
     />
-    <app-input-control
-      [form]="form"
-      [fb]="newEmail"
+    <input
       type="email"
+      pInputText
+      formControlName="email"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Kullanıcı E-Mail Adresini Giriniz"
     />
-    <app-input-control
-      [form]="form"
-      [fb]="newPassword"
+    <input
       type="password"
+      pInputText
+      formControlName="password"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Kullanıcı Şifresini Giriniz"
     />
-    <p-checkbox [formControl]="newBanned" [binary]="true" inputId="ny" />
-    <label for="ny" style="margin-left: 5px">Kullanıcıyı Banla</label>
-    <app-button-control
+    <p-checkbox
+      formControlName="banned"
+      [binary]="true"
+      value="Kullanıcıyı Banla"
+      inputId="ny"
+    />
+    <label for="ny" style="margin: 10px; display: inline-block"
+      >Kullanıcıyı Banla</label
+    >
+    <p-button
+      type="submit"
+      label="Kullanıcıyı Güncelle"
       [disabled]="!form.valid"
-      content="Kullanıcıyı Güncelle"
+      severity="success"
     />
   </form>
-  <p-toast></p-toast>
-  <p-confirmDialog></p-confirmDialog>
 </div>
+
+<p-toast />

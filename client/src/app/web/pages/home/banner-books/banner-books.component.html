@@ -11,10 +11,11 @@
           book.title
         }}</a>
         <p class="book-price">{{ book.price | currency }}</p>
-        <app-button-control
-          color="warning"
-          [path]="'/book-detail/' + book.id"
-          content="Kitabı Gör"
+        <p-button
+          label="Kitabı Gör"
+          severity="warning"
+          size="small"
+          [routerLink]="'/book-detail/' + book.id"
         />
       </div>
     </article>

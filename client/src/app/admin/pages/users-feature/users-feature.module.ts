@@ -6,6 +6,8 @@ import { ToastModule } from 'primeng/toast';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [UsersFeatureComponent],
@@ -16,8 +18,10 @@ import { CheckboxModule } from 'primeng/checkbox';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    CheckboxModule
+    CheckboxModule,
+    ButtonModule,
+    InputTextModule,
   ],
-  exports: [UsersFeatureComponent]
+  exports: [UsersFeatureComponent],
 })
 export class UsersFeatureModule {}

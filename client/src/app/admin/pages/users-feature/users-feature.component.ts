@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { HttpClientService } from 'src/app/services/http-client.service';
 import { UsersComponent } from '../users/users.component';
@@ -74,12 +69,6 @@ export class UsersFeatureComponent {
       rejectButtonStyleClass: 'p-button-text p-button-text',
 
       accept: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Güncellendi',
-          detail: 'Kullanıcı Güncelleme İşlemi Başarılı',
-        });
-
         const updatedUser: WebUsers = {
           ...this.user,
           ...this.form.value,
@@ -91,7 +80,15 @@ export class UsersFeatureComponent {
           updatedUser,
           (res) => {
             this.usersComponent.sidebarVisible = false;
-            window.location.reload();
+            this.messageService.add({
+              severity: 'info',
+              summary: 'Güncellendi',
+              detail:
+                'Kullanıcı Güncelleme İşlemi Başarılı Sayfa Yenileniyor...',
+            });
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
           }
         );
       },
@@ -104,25 +101,5 @@ export class UsersFeatureComponent {
         this.usersComponent.sidebarVisible = false;
       },
     });
-  }
-
-  get newFirstName(): FormControl {
-    return this.form.get('firstName') as FormControl;
-  }
-
-  get newLastName(): FormControl {
-    return this.form.get('lastName') as FormControl;
-  }
-
-  get newEmail(): FormControl {
-    return this.form.get('email') as FormControl;
-  }
-
-  get newPassword(): FormControl {
-    return this.form.get('password') as FormControl;
-  }
-
-  get newBanned(): FormControl {
-    return this.form.get('banned') as FormControl;
   }
 }

@@ -1,46 +1,43 @@
-<table style="overflow-x: auto">
-  <thead>
-    <tr>
-      <th>Kitap Kapak Fotoğrafı</th>
-      <th>Kitap İsmi</th>
-      <th>Kitap Açıklaması</th>
-      <th>Kitap Fiyatı</th>
-      <th>Kitap Yazarı</th>
-      <th>Kitap Baskı Tarihi</th>
-      <th>Kitab'ı İade Et</th>
-    </tr>
-  </thead>
+<div class="content">
+  <p-table [value]="rentedBooks" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Kitap Kapak Fotoğrafı</th>
+        <th>Kitap İsmi</th>
+        <th>Kitap Açıklaması</th>
+        <th>Kitap Fiyatı</th>
+        <th>Kitap Yazarı</th>
+        <th>Kitap Baskı Tarihi</th>
+        <th>Kitab'ı İade Et</th>
+      </tr>
+    </ng-template>
 
-  <tbody *ngIf="rentedBooks.length > 0">
-    <tr *ngFor="let book of rentedBooks">
-      <td>
-        <div class="img">
-          <img [src]="book.image" [alt]="book.title" width="50px" />
-        </div>
-      </td>
-      <td>
-        <p class="title">
-          {{ book.title }}
-        </p>
-      </td>
-      <td>
-        <p class="desc" [innerHTML]="book.description"></p>
-      </td>
-      <td>{{ book.price }}</td>
-      <td>{{ book.author }}</td>
-      <td>{{ book.publishDate | date : "MMMM, dd, y" : null : "tr" }}</td>
-      <td>
-        <div class="btns">
-          <app-button-control
-            (click)="returnBook(book.id)"
-            color="danger"
-            content="İade Et"
-          />
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<p-toast></p-toast>
-<p-confirmDialog></p-confirmDialog>
-<div *ngIf="rentedBooks.length === 0" class="empty">Kitaplar Bulunamadı</div>
+    <ng-template pTemplate="body" let-book>
+      <tr>
+        <td>
+          <div class="img">
+            <img [src]="book.image" [alt]="book.title" width="50px" />
+          </div>
+        </td>
+        <td>{{ book.title }}</td>
+        <td>
+          <p [innerHTML]="book.description.slice(0, 70) + '...'"></p>
+        </td>
+        <td>{{ book.price }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.publishDate | date : "MMMM, dd, y" : null : "tr" }}</td>
+        <td>
+          <div class="btns">
+            <p-button
+              label="İade Et"
+              severity="danger"
+              (click)="returnBook(book.id)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-toast />
+  <p-confirmDialog />
+</div>

@@ -19,27 +19,30 @@
   }
 
   ::ng-deep {
-    app-button-control {
-      .p-20 {
-        padding: 10px 0 0 0 !important;
+    p-button {
+      button {
+        width: 100%;
       }
     }
   }
 
   .password {
     position: relative;
-
     .password-btn {
       position: absolute;
-      top: 5px;
+      top: 7px;
       right: 5px;
-      background-color: #62ab00;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      padding: 7px;
-      color: #fff;
-      font-size: 15px;
+    }
+    ::ng-deep {
+      p-button {
+        button {
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
   }
 

@@ -8,7 +8,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,6 +18,7 @@ import { ErrorHandlerInterceptor } from './interceptors/error-handler.intercepto
     WebModule,
     ConfirmDialogModule,
     ToastModule,
+    BrowserAnimationsModule,
   ],
   bootstrap: [AppComponent],
   providers: [

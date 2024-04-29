@@ -8,96 +8,126 @@
     class="form"
     (ngSubmit)="selectedBookId !== null ? addBook(selectedBookId) : addBook()"
   >
-    <app-input-control
-      [form]="form"
-      [fb]="newTitle"
+    <input
+      pInputText
+      formControlName="title"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Kitap Adını Giriniz"
     />
-    <ng-container *ngIf="newTitle.invalid && newTitle.dirty">
-      <p *ngIf="newTitle.errors?.['required']">Kitap Adı Zorunludur</p>
+    <ng-container *ngIf="form.get('title').invalid && form.get('title').dirty">
+      <p *ngIf="form.get('title').errors?.['required']">Kitap Adı Zorunludur</p>
     </ng-container>
-    <angular-editor [formControl]="newDescription" [config]="editorConfig" />
-    <ng-container *ngIf="newDescription.invalid && newDescription.dirty">
-      <p *ngIf="newDescription.errors?.['required']">
+    <p-editor
+      formControlName="description"
+      [style]="{ height: '250px' }"
+      placeholder="Kitap Açıklamasını Giriniz"
+    />
+    <ng-container
+      *ngIf="form.get('description').invalid && form.get('description').dirty"
+    >
+      <p *ngIf="form.get('description').errors?.['required']">
         Kitap Açıklaması Zorunludur
       </p>
     </ng-container>
-    <app-input-control
-      [form]="form"
-      [fb]="newImage"
-      type="file"
-      (change)="onFileSelected($event)"
+    <p-fileUpload
+      mode="basic"
+      name="image"
+      chooseLabel="Dosya Seç"
+      (onSelect)="onFileSelected($event)"
+      accept=".jpg,.png,.jpeg"
     />
-    <ng-container *ngIf="newImage.invalid && newImage.dirty">
-      <p *ngIf="newImage.errors?.['required']">Kitap Fotoğrafı Zorunludur</p>
+    <ng-container *ngIf="form.get('image').invalid && form.get('image').dirty">
+      <p *ngIf="form.get('image').errors?.['required']">
+        Kitap Fotoğrafı Zorunludur
+      </p>
     </ng-container>
     <img [src]="image" alt="" width="80px" />
-    <app-input-control
-      [form]="form"
-      [fb]="newPublisher"
+    <input
+      pInputText
+      formControlName="publisher"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Kitap Yayıncısını Giriniz"
     />
-    <ng-container *ngIf="newPublisher.invalid && newPublisher.dirty">
-      <p *ngIf="newPublisher.errors?.['required']">
+    <ng-container
+      *ngIf="form.get('publisher').invalid && form.get('publisher').dirty"
+    >
+      <p *ngIf="form.get('publisher').errors?.['required']">
         Kitap Yayıncısı Zorunludur
       </p>
     </ng-container>
-    <app-input-control
-      [form]="form"
-      [fb]="newAuthor"
+    <input
+      pInputText
+      formControlName="author"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Kitap Yazarını Giriniz"
     />
-    <ng-container *ngIf="newAuthor.invalid && newAuthor.dirty">
-      <p *ngIf="newAuthor.errors?.['required']">Kitap Yazarı Zorunludur</p>
+    <ng-container
+      *ngIf="form.get('author').invalid && form.get('author').dirty"
+    >
+      <p *ngIf="form.get('author').errors?.['required']">
+        Kitap Yazarı Zorunludur
+      </p>
     </ng-container>
     <p-dropdown
       [options]="categories"
-      [formControl]="newCategory"
+      formControlName="categoryId"
       optionLabel="title"
       optionValue="id"
       placeholder="Kitap Kategorisini Seçiniz"
     />
-    <ng-container *ngIf="newCategory.invalid && newCategory.dirty">
-      <p *ngIf="newCategory.errors?.['required']">
+    <ng-container
+      *ngIf="form.get('categoryId').invalid && form.get('categoryId').dirty"
+    >
+      <p *ngIf="form.get('categoryId').errors?.['required']">
         Kitap Kategorisi Zorunludur
       </p>
     </ng-container>
-    <app-input-control
-      [form]="form"
-      [fb]="newPrice"
+    <input
       type="number"
+      pInputText
+      formControlName="price"
+      style="width: 100%"
       placeholder="Kitap Fiyatını Giriniz"
     />
-    <ng-container *ngIf="newPrice.invalid && newPrice.dirty">
-      <p *ngIf="newPrice.errors?.['required']">Kitap Fiyatı Zorunludur</p>
+    <ng-container *ngIf="form.get('price').invalid && form.get('price').dirty">
+      <p *ngIf="form.get('price').errors?.['required']">
+        Kitap Fiyatı Zorunludur
+      </p>
     </ng-container>
-    <app-input-control
-      [form]="form"
-      [fb]="newPublishDate"
-      type="date"
+    <p-calendar
+      formControlName="publishDate"
+      name="publishDate"
       placeholder="Kitap Yayın Tarihini Giriniz"
+      dateFormat="yy-mm-dd"
     />
-    <ng-container *ngIf="newPublishDate.invalid && newPublishDate.dirty">
-      <p *ngIf="newPublishDate.errors?.['required']">
+    <ng-container
+      *ngIf="form.get('publishDate').invalid && form.get('publishDate').dirty"
+    >
+      <p *ngIf="form.get('publishDate').errors?.['required']">
         Kitap Yayın Tarihi Zorunludur
       </p>
     </ng-container>
-    <app-input-control
-      [form]="form"
-      [fb]="newPageNumber"
+    <input
       type="number"
+      pInputText
+      formControlName="pageNumber"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Kitap Sayfa Sayısını Giriniz"
     />
-    <ng-container *ngIf="newPageNumber.invalid && newPageNumber.dirty">
-      <p *ngIf="newPageNumber.errors?.['required']">
+    <ng-container
+      *ngIf="form.get('pageNumber').invalid && form.get('pageNumber').dirty"
+    >
+      <p *ngIf="form.get('pageNumber').errors?.['required']">
         Kitap Sayfa Sayısı Zorunludur
       </p>
     </ng-container>
-    <app-button-control
+    <p-button
+      type="submit"
+      [label]="selectedBookId !== null ? 'Kitabı Güncelle' : 'Kitap Ekle'"
       [disabled]="!form.valid"
-      [content]="selectedBookId !== null ? 'Kitabı Güncelle' : 'Kitap Ekle'"
+      severity="success"
+      size="small"
     />
-    <p-toast></p-toast>
-    <p-confirmDialog></p-confirmDialog>
+    <p-toast />
   </form>
 </div>

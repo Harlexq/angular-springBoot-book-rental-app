@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { WebUsers } from 'src/app/models/WebUsers';
 import { HttpClientService } from 'src/app/services/http-client.service';
@@ -90,21 +85,5 @@ export class ProfileComponent {
         });
       },
     });
-  }
-
-  get newFirstName(): FormControl {
-    return this.form.get('firstName') as FormControl;
-  }
-
-  get newLastName(): FormControl {
-    return this.form.get('lastName') as FormControl;
-  }
-
-  get newEmail(): FormControl {
-    return this.form.get('email') as FormControl;
-  }
-
-  get newPassword(): FormControl {
-    return this.form.get('password') as FormControl;
   }
 }

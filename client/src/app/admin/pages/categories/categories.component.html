@@ -1,5 +1,5 @@
 <div class="btn-right">
-  <app-button-control (click)="toggleSidebar()" content="Kategori Ekle" />
+  <p-button label="Kategori Ekle" size="small" (click)="toggleSidebar()" />
 </div>
 
 <p-sidebar
@@ -31,18 +31,18 @@
       <td>{{ category.description }}</td>
       <td>
         <div class="edit">
-          <app-button-control
-            color="warning"
+          <p-button
             (click)="toggleSidebar(category.id)"
-            content="Düzenle"
-          ></app-button-control>
+            label="Düzenle"
+            severity="warning"
+            size="small"
+          />
           <p-button
             (click)="deleteCategory(category.id)"
-            icon="pi pi-times"
             label="Sil"
-            styleClass="btn btn-danger"
-            [attr.data-id]="category.id"
-          ></p-button>
+            severity="danger"
+            size="small"
+          />
         </div>
       </td>
     </tr>
@@ -55,5 +55,5 @@
   [rowsPerPageOptions]="rowSize"
   (onPageChange)="onPageChange($event)"
 />
-<p-toast></p-toast>
-<p-confirmDialog></p-confirmDialog>
+<p-toast />
+<p-confirmDialog />

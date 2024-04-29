@@ -3,70 +3,102 @@
     <div class="title">
       <h1>Kitapçı Dayı'ya Kayıt Ol</h1>
     </div>
-    <app-input-control
-      [fb]="newFirstName"
-      [form]="form"
+    <input
+      type="text"
+      pInputText
+      formControlName="firstName"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="İsminizi Giriniz"
     />
-    <ng-container *ngIf="newFirstName.invalid && newFirstName.dirty">
-      <p *ngIf="newFirstName.errors?.['required']">İsim Alanı Zorunludur</p>
+    <ng-container
+      *ngIf="form.get('firstName').invalid && form.get('firstName').dirty"
+    >
+      <p *ngIf="form.get('firstName').errors?.['required']">
+        İsim Alanı Zorunludur
+      </p>
     </ng-container>
-    <app-input-control
-      [fb]="newLastName"
-      [form]="form"
+    <input
+      type="text"
+      pInputText
+      formControlName="lastName"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Soyisminizi Giriniz"
     />
-    <ng-container *ngIf="newLastName.invalid && newLastName.dirty">
-      <p *ngIf="newLastName.errors?.['required']">Soyisim Alanı Zorunludur</p>
+    <ng-container
+      *ngIf="form.get('lastName').invalid && form.get('lastName').dirty"
+    >
+      <p *ngIf="form.get('lastName').errors?.['required']">
+        Soyisim Alanı Zorunludur
+      </p>
     </ng-container>
-    <app-input-control
-      [fb]="newEmail"
-      [form]="form"
+    <input
+      type="email"
+      pInputText
+      formControlName="email"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="E-Mail Adresinizi Giriniz"
     />
-    <ng-container *ngIf="newEmail.invalid && newEmail.dirty">
-      <p *ngIf="newEmail.errors?.['required']">E-Mail Adresi Zorunludur</p>
-      <p *ngIf="newEmail.errors?.['email']">
+    <ng-container *ngIf="form.get('email').invalid && form.get('email').dirty">
+      <p *ngIf="form.get('email').errors?.['required']">
+        E-Mail Adresi Zorunludur
+      </p>
+      <p *ngIf="form.get('email').errors?.['email']">
         E-Mail Adresi Doğru Format'da Olmalıdır
       </p>
     </ng-container>
     <div class="password">
-      <app-input-control
-        [fb]="newPassword"
+      <input
         [type]="passType"
-        [form]="form"
+        pInputText
+        formControlName="password"
+        style="width: 100%; margin-bottom: 10px"
         placeholder="Şifrenizi Giriniz"
       />
-      <ng-container *ngIf="newPassword.invalid && newPassword.dirty">
-        <p *ngIf="newPassword.errors?.['required']">Şifre Alanı Zorunludur</p>
-        <p *ngIf="newPassword.errors?.['minlength']">
+      <ng-container
+        *ngIf="form.get('password').invalid && form.get('password').dirty"
+      >
+        <p *ngIf="form.get('password').errors?.['required']">
+          Şifre Alanı Zorunludur
+        </p>
+        <p *ngIf="form.get('password').errors?.['minlength']">
           Şifreniz Minumum 6 Karakter Olmalıdır
         </p>
-        <p *ngIf="newPassword.errors?.['maxlength']">
+        <p *ngIf="form.get('password').errors?.['maxlength']">
           Şifreniz Maximum 12 Karakter Olmalıdır
         </p>
       </ng-container>
-      <button type="button" (click)="passwordShow()" class="password-btn">
+
+      <p-button
+        (click)="passwordShow()"
+        severity="success"
+        class="password-btn"
+      >
         <ng-container *ngIf="passType == 'password'; else textInput">
           <i class="fa-regular fa-eye"></i>
         </ng-container>
         <ng-template #textInput>
           <i #textInput class="fa-regular fa-eye-slash"></i
         ></ng-template>
-      </button>
+      </p-button>
     </div>
-    <app-input-control
-      [fb]="newRePassword"
+    <input
       [type]="passType"
-      [form]="form"
+      pInputText
+      formControlName="rePassword"
+      style="width: 100%; margin-bottom: 10px"
       placeholder="Şifrenizi Tekrardan Giriniz"
     />
-    <ng-container *ngIf="newRePassword.touched">
-      <p *ngIf="newPassword.value !== newRePassword.value">
+    <ng-container *ngIf="form.get('rePassword').touched">
+      <p *ngIf="form.get('password').value !== form.get('rePassword').value">
         Şifreler Birbirine Eşit Olmalıdır
       </p>
     </ng-container>
-    <app-button-control [disabled]="!form.valid" content="Kayıt Ol" />
+    <p-button
+      type="submit"
+      label="Kayıt Ol"
+      [disabled]="!form.valid"
+      severity="success"
+    />
     <a class="to-link" routerLink="/login">Zaten Bir Hesabın Varmı?</a>
   </form>
 </div>

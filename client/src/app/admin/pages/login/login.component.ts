@@ -61,12 +61,4 @@ export class AdminLoginComponent {
       }
     });
   }
-
-  get newEmail(): FormControl {
-    return this.form.get('email') as FormControl;
-  }
-
-  get newPassword(): FormControl {
-    return this.form.get('password') as FormControl;
-  }
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
@@ -95,25 +94,5 @@ export class AdminSignupComponent {
     this.http.post<AdminUsers>(`adminUserCreate`, model, (res) => {
       this.router.navigateByUrl('/admin/login');
     });
-  }
-
-  get newFirstName(): FormControl {
-    return this.form.get('firstName') as FormControl;
-  }
-
-  get newLastName(): FormControl {
-    return this.form.get('lastName') as FormControl;
-  }
-
-  get newEmail(): FormControl {
-    return this.form.get('email') as FormControl;
-  }
-
-  get newPassword(): FormControl {
-    return this.form.get('password') as FormControl;
-  }
-
-  get newRePassword(): FormControl {
-    return this.form.get('rePassword') as FormControl;
   }
 }

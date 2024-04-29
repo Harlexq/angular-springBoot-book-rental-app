@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebUsers } from 'src/app/models/WebUsers';
 import { HttpClientService } from 'src/app/services/http-client.service';
@@ -62,13 +57,5 @@ export class WebLoginComponent {
         this.userError = 'E-Mail Adresi veya Şifre Yanlış';
       }
     });
-  }
-
-  get newEmail(): FormControl {
-    return this.form.get('email') as FormControl;
-  }
-
-  get newPassword(): FormControl {
-    return this.form.get('password') as FormControl;
   }
 }

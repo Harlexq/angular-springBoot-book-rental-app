@@ -16,7 +16,7 @@
       .banner-container {
         position: relative;
         &:hover .banner-btn {
-          display: flex;
+          display: block;
         }
         img {
           border-radius: 8px;
@@ -24,41 +24,35 @@
           width: 70px;
           height: 70px;
         }
+
         .banner-btn {
-          background-color: #ed4040;
-          transition: 0.3s;
-          color: #fff;
-          font-size: 14px;
-          cursor: pointer;
-          border: none;
-          border-radius: 3px;
-          padding: 5px;
-          align-items: center;
-          justify-content: center;
           position: absolute;
           top: 3px;
           right: 3px;
           display: none;
-          &:hover {
-            background-color: #f52828;
+          ::ng-deep {
+            button {
+              width: 32px;
+              height: 32px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
           }
         }
       }
       .banner-create {
         border-radius: 8px;
-        width: 70px;
-        height: 70px;
-        background-color: #a7a8a6;
-        transition: 0.3s;
-        border: none;
-        cursor: pointer;
         font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        &:hover {
-          background-color: #939493;
+        ::ng-deep {
+          button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+          }
         }
       }
     }
@@ -66,9 +60,19 @@
   .right {
     flex: 0 1 calc(50% - 30px);
     width: 50%;
-    app-button-control {
+    p-button {
       display: flex;
       justify-content: flex-end;
+    }
+  }
+}
+
+::ng-deep {
+  p-dialog {
+    p-fileUpload {
+      .p-fileupload {
+        margin: 10px 0;
+      }
     }
   }
 }
