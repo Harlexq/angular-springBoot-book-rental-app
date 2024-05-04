@@ -18,13 +18,7 @@
         <th>Kitap ID</th>
         <th>Kitap Kapak Fotoğrafı</th>
         <th>Kitap İsmi</th>
-        <th>Kitap Açıklaması</th>
-        <th>Kitap Yayıncısı</th>
-        <th>Kitap Yazarı</th>
         <th>Kitap Kategorisi</th>
-        <th>Kitap Fiyatı</th>
-        <th>Kitap Baskı Tarihi</th>
-        <th>Kitap Sayfa Sayısı</th>
         <th>Kitap Kira Bilgisi</th>
         <th>İşlemler</th>
       </tr>
@@ -33,22 +27,14 @@
       <tr>
         <td>{{ book.id }}</td>
         <td>
-          <div class="img">
+          <div class="img" (click)="bookReadMore(book.id)">
             <img [src]="book.image" [alt]="book.title" />
           </div>
         </td>
         <td>
           {{ book.title }}
         </td>
-        <td>
-          <p [innerHTML]="book.description.slice(0, 70) + '...'"></p>
-        </td>
-        <td>{{ book.publisher }}</td>
-        <td>{{ book.author }}</td>
         <td>{{ getCategoryName(book.categoryId) }}</td>
-        <td>{{ book.price }}</td>
-        <td>{{ book.publishDate | date : "MMMM, dd, y" : null : "tr" }}</td>
-        <td>{{ book.pageNumber }}</td>
         <td>
           <p>{{ book.isRented ? "Kiralandı" : "Kiralık" }}</p>
           <p>
@@ -57,6 +43,12 @@
         </td>
         <td>
           <div class="edit">
+            <p-button
+              (click)="bookReadMore(book.id)"
+              label="Detaylı Gör"
+              severity="success"
+              size="small"
+            />
             <p-button
               (click)="toggleSidebar(book.id)"
               label="Düzenle"
@@ -84,3 +76,44 @@
 />
 <p-toast />
 <p-confirmDialog />
+<p-dialog
+  header="Kitap Detayı"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div *ngIf="book">
+    <div
+      style="
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      "
+    >
+      <h1>{{ book.title }}</h1>
+      <img [src]="book.image" [alt]="book.title" width="100px" />
+    </div>
+    <div
+      style="background-color: #ccc; height: 2px; width: 98%; margin: 0 auto"
+    ></div>
+    <h2>Açıklama</h2>
+    <p [innerHTML]="book.description"></p>
+    <div
+      style="background-color: #ccc; height: 2px; width: 98%; margin: 0 auto"
+    ></div>
+    <p><strong>Yayıncı: </strong>{{ book.publisher }}</p>
+    <p><strong>Yazar: </strong>{{ book.author }}</p>
+    <p><strong>Kategori: </strong>{{ getCategoryName(book.categoryId) }}</p>
+    <p><strong>Fiyat: </strong>{{ book.price }}</p>
+    <p><strong>Yayın Tarihi: </strong>{{ book.publishDate }}</p>
+    <p><strong>Sayfa Sayısı: </strong>{{ book.pageNumber }}</p>
+    <p><strong>Kiralık mı?: </strong>{{ book.isRented ? "Evet" : "Hayır" }}</p>
+    <p *ngIf="book.isRented">
+      <strong>Kim Tarafından Kiralandı?: </strong
+      >{{ getUserName(book.rentedFrom) }}
+    </p>
+  </div>
+</p-dialog>

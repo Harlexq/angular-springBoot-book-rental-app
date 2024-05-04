@@ -1,8 +1,9 @@
 .content {
   ::ng-deep {
     p-table {
-      table {
-        width: 1800px;
+      .img img {
+        width: 50px;
+        cursor: pointer;
       }
     }
   }

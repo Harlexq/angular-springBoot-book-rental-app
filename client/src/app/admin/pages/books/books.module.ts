@@ -10,6 +10,7 @@ import { BookFeatureModule } from '../book-feature/book-feature.module';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [BooksComponent],
@@ -29,6 +30,7 @@ import { ButtonModule } from 'primeng/button';
     PaginatorModule,
     TableModule,
     ButtonModule,
+    DialogModule,
   ],
 })
 export class BooksModule {}

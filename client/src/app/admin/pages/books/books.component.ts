@@ -11,6 +11,7 @@ import { HttpClientService } from 'src/app/services/http-client.service';
 })
 export class BooksComponent {
   books: Books[] = [];
+  book: Books;
   categories: Category[] = [];
   users: WebUsers[] = [];
   pagedBooks: Books[] = [];
@@ -105,5 +106,14 @@ export class BooksComponent {
   toggleSidebar(id?: number) {
     this.selectedBookId = id || null;
     this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  visible: boolean = false;
+
+  bookReadMore(id: number) {
+    this.visible = true;
+    this.http.getById<Books>(`bookRead`, id, (res) => {
+      this.book = res;
+    });
   }
 }
